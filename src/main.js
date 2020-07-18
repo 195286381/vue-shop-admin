@@ -5,9 +5,11 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-Vue.use(ElementUI)
+// 全局装载 axios 为vue.prototype.$http
+import './http/httpUtils'
 
-// Vue.config.productionTip = false
+Vue.use(ElementUI)
+Vue.config.productionTip = false
 
 new Vue({
   router,

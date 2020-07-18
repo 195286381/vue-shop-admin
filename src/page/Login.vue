@@ -7,10 +7,10 @@
       <!-- 添加 ref 是为了获取引用重置表单 -->
       <el-form class="login-form-box" ref="loginFormRef" :model="loginForm" :rules="rules" label-position="left" label-width="0" label-suffix=":">
         <el-form-item size="mini" prop="username">
-          <el-input v-model="loginForm.username" prefix-icon="el-icon-user" aria-placeholder="用户名"></el-input>
+          <el-input v-model="loginForm.username" prefix-icon="el-icon-user" placeholder="默认用户名: admin"></el-input>
         </el-form-item>
         <el-form-item size="mini" prop="password">
-          <el-input v-model="loginForm.password" prefix-icon="el-icon-lock"></el-input>
+          <el-input v-model="loginForm.password" prefix-icon="el-icon-lock" placeholder="默认密码: 123456"></el-input>
         </el-form-item>
         <el-form-item class="login-form-button-group" size="mini">
           <el-button type="primary" @click="login">确认</el-button>
@@ -27,8 +27,8 @@ export default {
   data () {
     return {
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       },
       rules: {
         // 用户名校验.
@@ -47,8 +47,19 @@ export default {
 
   methods: {
     login () {
-      this.$refs.loginFormRef.validate(valid => {
+      this.$refs.loginFormRef.validate(async valid => {
         console.log('valid result: ' + valid)
+        if (!valid) return // 验证不通过, 则直接返回.
+        // 发起登陆的请求.
+        const { data: res } = await this.$http.post('login', this.loginForm)
+        console.log('hll')
+        console.log('res: ' + JSON.stringify(res))
+        if (res.meta.status !== 200) {
+          this.$message.error('登录失败')
+        }
+        this.$message.success('登录成功')
+        window.sessionStorage.setItem('token', res.data.token)
+        this.$router.push('/home')
       })
     },
     resetLoginForm () {
