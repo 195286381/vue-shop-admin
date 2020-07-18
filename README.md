@@ -1,4 +1,4 @@
-# vue-mook-project
+# vue-admin-project
 
 ## Project setup
 ```
