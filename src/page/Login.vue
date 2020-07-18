@@ -13,7 +13,7 @@
           <el-input v-model="loginForm.password" prefix-icon="el-icon-lock"></el-input>
         </el-form-item>
         <el-form-item class="login-form-button-group" size="mini">
-          <el-button type="primary">确认</el-button>
+          <el-button type="primary" @click="login">确认</el-button>
           <el-button type="info" @click="resetLoginForm">重置</el-button>
         </el-form-item>
       </el-form>
@@ -46,6 +46,11 @@ export default {
   },
 
   methods: {
+    login () {
+      this.$refs.loginFormRef.validate(valid => {
+        console.log('valid result: ' + valid)
+      })
+    },
     resetLoginForm () {
       console.log(this)
       // 重置表单元素
