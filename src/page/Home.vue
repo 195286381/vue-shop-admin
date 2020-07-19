@@ -4,7 +4,7 @@
       <el-header>
         <div>
           <img src="../assets/logo.png" alt="">
-          <span>ZR-Report 报告管理系统</span>
+          <span>ZR-Tools 后台管理系统工具</span>
         </div>
         <el-button size="mini" @click="logout">
           <i class="el-icon-user"></i>
@@ -39,7 +39,8 @@
         </el-aside>
         <!-- 右侧内容主体 -->
         <el-main>
-          <div>{{ menuList }}</div>
+          <!-- 路由占位符 -->
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
