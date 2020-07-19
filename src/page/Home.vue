@@ -53,10 +53,10 @@
         <el-aside class="right-aside" :class="propertyMenuClass" :width="propertyMenu.isCollapse === true ? '30px' : '300px'">
           <div class="right-aside-menu">
               <i :class="propertyMenuCollapseIcon"  @click="togglePropertyMenuCollapse"></i>
-              <i class="el-icon-user selected"></i>
-              <i class="el-icon-user"></i>
-              <i class="el-icon-user"></i>
-              <i class="el-icon-user"></i>
+              <i class="el-icon-magic-stick selected"></i>
+              <i class="el-icon-suitcase"></i>
+              <i class="el-icon-notebook-1"></i>
+              <i class="el-icon-set-up"></i>
           </div>
           <div class="right-aside-content">
             aside-content
@@ -204,7 +204,8 @@ export default {
   }
 
   .right-aside .right-aside-menu .selected {
-    background-color: #DCDFE6;
+    background-color: #C0C4CC;
+
   }
   .right-aside .right-aside-content {
     box-sizing: border-box;
@@ -218,7 +219,8 @@ export default {
   }
 
   .right-aside .right-aside-menu i:hover {
-    background-color: #C0C4CC;
+
+    background-color: #DCDFE6;
     cursor: pointer;
   }
 
