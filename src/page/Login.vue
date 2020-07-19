@@ -13,7 +13,7 @@
           <el-input v-model="loginForm.password" prefix-icon="el-icon-lock" placeholder="默认密码: 123456"></el-input>
         </el-form-item>
         <el-form-item class="login-form-button-group" size="mini">
-          <el-button type="primary" @click="login">确认</el-button>
+          <el-button type="primary" @click="login">登入</el-button>
           <el-button type="info" @click="resetLoginForm">重置</el-button>
         </el-form-item>
       </el-form>
