@@ -13,7 +13,7 @@
           <el-input v-model="loginForm.password" prefix-icon="el-icon-lock" placeholder="默认密码: 123456"></el-input>
         </el-form-item>
         <el-form-item class="login-form-button-group" size="mini">
-          <el-button type="primary" @click="login">登入</el-button>
+          <el-button type="primary" @click="login" :loading="isLoading">登入</el-button>
           <el-button type="info" @click="resetLoginForm">重置</el-button>
         </el-form-item>
       </el-form>
@@ -26,6 +26,7 @@ export default {
   // 组件的数据区域
   data () {
     return {
+      isLoading: false,
       loginForm: {
         username: 'admin',
         password: '123456'
@@ -46,12 +47,17 @@ export default {
   },
 
   methods: {
+    toggleClose () {
+
+    },
     login () {
+      this.isLoading = true
       this.$refs.loginFormRef.validate(async valid => {
         console.log('valid result: ' + valid)
         if (!valid) return // 验证不通过, 则直接返回.
         // 发起登陆的请求.
         const { data: res } = await this.$http.post('login', this.loginForm)
+        this.isLoading = false
         console.log('hll')
         console.log('res: ' + JSON.stringify(res))
         if (res.meta.status !== 200) {
